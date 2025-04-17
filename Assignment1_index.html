@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML Assignment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+        background: linear-gradient(to right, #eef2f3, #cfd9df);
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+      .form-container {
+        background-color: #fff;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        width: 100%;
+      }
+      h1 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        font-weight: 600;
+        color: #333;
+      }
+      .row {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      .row > div {
+        flex: 1 1 48%;
+        display: flex;
+        flex-direction: column;
+      }
+      label {
+        margin-bottom: 0.5rem;
+        font-size: 14px;
+        color: #555;
+      }
+      input {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 15px;
+        outline: none;
+        transition: border 0.2s;
+      }
+      input:focus {
+        border-color: #007bff;
+      }
+      .checkbox-group {
+        margin-top: 1rem;
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        color: #444;
+      }
+      .checkbox-group input {
+        margin-right: 0.5rem;
+      }
+      .terms-text {
+        font-size: 13px;
+        color: #666;
+        margin-left: 1.5rem;
+        margin-top: 0.3rem;
+      }
+      .terms-text a {
+        color: #007bff;
+        text-decoration: none;
+      }
+      .button-row {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 2rem;
+      }
+      button, .link-btn {
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 6px;
+        font-size: 15px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      button {
+        background-color: #007bff;
+        color: white;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+      .link-btn {
+        background-color: #e2e6ea;
+        color: #333;
+        text-decoration: none;
+        text-align: center;
+        line-height: 2.25rem;
+      }
+      .link-btn:hover {
+        background-color: #cfd4d9;
+      }
+      @media (max-width: 600px) {
+        .row > div {
+          flex: 1 1 100%;
+        }
+        .button-row {
+          flex-direction: column;
+          gap: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      <h1>Create Your Account</h1>
+      <form>
+        <div class="row">
+          <div>
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" name="fname" required />
+          </div>
+          <div>
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" name="lname" required />
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label for="mobile">Mobile Number</label>
+            <input type="tel" id="mobile" name="mobile" required />
+          </div>
+          <div>
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required />
+          </div>
+          <div>
+            <label for="confirm">Confirm Password</label>
+            <input type="password" id="confirm" name="confirm" required />
+          </div>
+        </div>
+        <div class="checkbox-group">
+          <input type="checkbox" id="agree" required />
+          <label for="agree">I Agree</label>
+        </div>
+        <div class="terms-text">
+          By clicking <strong>Register</strong>, you agree to the
+          <a href="#">Terms and Conditions</a> set by this site, including our Cookie Use.
+        </div>
+        <div class="button-row">
+          <button type="submit">Register</button>
+          <a href="#" class="link-btn">Sign In</a>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
