@@ -1,78 +1,105 @@
 // 1: Reverse a number
-function reverseNumber(x) {
-  return parseInt(x.toString().split('').reverse().join(''));
+function reverseNumber(num) {
+  let str = num.toString();
+  let reversed = str.split('').reverse().join('');
+  return parseInt(reversed);
 }
 
 // 2: Check if a string is a palindrome
-function isPalindrome(str) {
-  const cleaned = str.replace(/\s+/g, '').toLowerCase();
-  return cleaned === cleaned.split('').reverse().join('');
+function isPalindrome(word) {
+  word = word.toLowerCase().replace(/\s/g, '');
+  let reversed = word.split('').reverse().join('');
+  return word === reversed;
 }
 
 // 3: Generate all combinations of a string
 function stringCombinations(str) {
-  const results = [];
+  let combos = [];
   for (let i = 0; i < str.length; i++) {
     for (let j = i + 1; j <= str.length; j++) {
-      results.push(str.slice(i, j));
+      combos.push(str.slice(i, j));
     }
   }
-  return results;
+  return combos;
 }
 
 // 4: Alphabetical order
 function alphabetOrder(str) {
-  return str.split('').sort().join('');
+  let letters = str.split('');
+  letters.sort();
+  return letters.join('');
 }
 
 // 5: Capitalize first letter of each word
 function capitalizeWords(str) {
-  return str.replace(/\b\w/g, char => char.toUpperCase());
+  let words = str.split(' ');
+  for (let i = 0; i < words.length; i++) {
+    words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+  }
+  return words.join(' ');
 }
 
 // 6: Find the longest word
-function findLongestWord(str) {
-  const words = str.split(' ');
-  return words.reduce((a, b) => a.length >= b.length ? a : b);
+function findLongestWord(sentence) {
+  let words = sentence.split(' ');
+  let longest = '';
+  for (let i = 0; i < words.length; i++) {
+    if (words[i].length > longest.length) {
+      longest = words[i];
+    }
+  }
+  return longest;
 }
 
 // 7: Count vowels
 function countVowels(str) {
-  return (str.match(/[aeiou]/gi) || []).length;
+  let count = 0;
+  let vowels = 'aeiouAEIOU';
+  for (let i = 0; i < str.length; i++) {
+    if (vowels.indexOf(str[i]) !== -1) {
+      count++;
+    }
+  }
+  return count;
 }
 
 // 8: Check for prime number
 function isPrime(num) {
   if (num <= 1) return false;
-  for (let i = 2; i <= Math.sqrt(num); i++) {
+  for (let i = 2; i < num; i++) {
     if (num % i === 0) return false;
   }
   return true;
 }
 
 // 9: Get type of argument
-function getType(value) {
-  return typeof value;
+function getType(x) {
+  return typeof x;
 }
 
 // 10: Identity matrix
 function identityMatrix(n) {
-  const result = [];
+  let matrix = [];
   for (let i = 0; i < n; i++) {
-    const row = [];
+    let row = [];
     for (let j = 0; j < n; j++) {
-      row.push(i === j ? 1 : 0);
+      if (i === j) {
+        row.push(1);
+      } else {
+        row.push(0);
+      }
     }
-    result.push(row);
+    matrix.push(row);
   }
-  return result;
+  return matrix;
 }
 
-// 23: Find the first non-repeated character
+// 23: First non-repeated character
 function firstNonRepeatedChar(str) {
   for (let i = 0; i < str.length; i++) {
-    if (str.indexOf(str[i]) === str.lastIndexOf(str[i])) {
-      return str[i];
+    let ch = str[i];
+    if (str.indexOf(ch) === str.lastIndexOf(ch)) {
+      return ch;
     }
   }
   return null;
@@ -80,11 +107,12 @@ function firstNonRepeatedChar(str) {
 
 // 24: Bubble Sort
 function bubbleSort(arr) {
-  let len = arr.length;
-  for (let i = 0; i < len; i++) {
-    for (let j = 0; j < len - i - 1; j++) {
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr.length - 1 - i; j++) {
       if (arr[j] < arr[j + 1]) {
-        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+        let temp = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = temp;
       }
     }
   }
@@ -92,58 +120,57 @@ function bubbleSort(arr) {
 }
 
 // 25: Longest country name
-function Longest_Country_Name(country_names) {
-  return country_names.reduce((a, b) => a.length > b.length ? a : b);
-}
-
-// 26: Longest substring without repeating characters
-function longestUniqueSubstr(str) {
-  let maxLength = 0, start = 0, seen = {}, longest = "";
-  for (let i = 0; i < str.length; i++) {
-    if (seen[str[i]] >= start) {
-      start = seen[str[i]] + 1;
-    }
-    seen[str[i]] = i;
-    if (i - start + 1 > maxLength) {
-      maxLength = i - start + 1;
-      longest = str.substring(start, i + 1);
+function Longest_Country_Name(arr) {
+  let longest = '';
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].length > longest.length) {
+      longest = arr[i];
     }
   }
   return longest;
 }
 
-// 27: Longest palindromic substring
-function longestPalindrome(str) {
-  if (str.length <= 1) return str;
-  let start = 0, end = 0;
+// 26: Longest substring without repeating characters
+function longestUniqueSubstr(str) {
+  let max = '';
   for (let i = 0; i < str.length; i++) {
-    let len1 = expandAroundCenter(str, i, i);
-    let len2 = expandAroundCenter(str, i, i + 1);
-    let len = Math.max(len1, len2);
-    if (len > end - start) {
-      start = i - Math.floor((len - 1) / 2);
-      end = i + Math.floor(len / 2);
+    let seen = {};
+    let current = '';
+    for (let j = i; j < str.length; j++) {
+      if (seen[str[j]]) break;
+      seen[str[j]] = true;
+      current += str[j];
+    }
+    if (current.length > max.length) {
+      max = current;
     }
   }
-  return str.substring(start, end + 1);
+  return max;
 }
 
-function expandAroundCenter(str, left, right) {
-  while (left >= 0 && right < str.length && str[left] === str[right]) {
-    left--;
-    right++;
+// 27: Longest palindromic substring
+function longestPalindrome(str) {
+  let max = '';
+  for (let i = 0; i < str.length; i++) {
+    for (let j = i + 1; j <= str.length; j++) {
+      let sub = str.substring(i, j);
+      let reversed = sub.split('').reverse().join('');
+      if (sub === reversed && sub.length > max.length) {
+        max = sub;
+      }
+    }
   }
-  return right - left - 1;
+  return max;
 }
 
 // 28: Pass a function as parameter
 function greet(name) {
-  return "Hello, " + name + "!";
+  return 'Hi ' + name;
 }
 
-function processUserInput(callback) {
-  const name = "Alice";
-  console.log(callback(name));
+function sayHi(callback) {
+  let user = 'Alice';
+  console.log(callback(user));
 }
 
 // 29: Get the function name
