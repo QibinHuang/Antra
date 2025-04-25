@@ -9,6 +9,15 @@
 <body>
   <div class="container">
     <h1>Fitness Goal Tracker</h1>
+    <div class="filter-container">
+  <label for="filter-category">Filter by Category:</label>
+  <select id="filter-category">
+    <option value="All">All</option>
+    <option value="Cardio">Cardio</option>
+    <option value="Strength Training">Strength Training</option>
+    <option value="Yoga">Yoga</option>
+  </select>
+</div>
     <form id="goal-form">
       <input type="text" id="description" placeholder="Enter fitness goal" required />
       <select id="category" required>
